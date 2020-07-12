@@ -1,0 +1,13 @@
+﻿@model EmployeesCounter.Models.EmployeeTableModel
+@using EmployeesCounter.HtmlHelpers
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h2>Сотрудники</h2>
+@Html.ActionLink("Добавить", "CreateEmployee", "Employee")
+@Html.CreateTable(Model.employeeViewModels, Model.TableModel,
+    x => Url.Action("EditEmployee", "Employee", new { id = x.ToString() }),
+    x => Url.Action("DeleteEmployee", "Employee", new { id = x.ToString() }),
+    x => Url.Action("Index", "Employee", new { currentTable = x.ToString() }))

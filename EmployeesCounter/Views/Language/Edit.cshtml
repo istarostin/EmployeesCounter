@@ -1,0 +1,17 @@
+﻿@model EmployeesCounter.Models.ProgLang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("EditSpec", "Language"))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div>
+        @Html.EditorFor(x => x.Title)
+    </div>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index", "Employee")
+}
+

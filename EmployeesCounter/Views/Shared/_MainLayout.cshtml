@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EmployeesCounter</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="/js/jquery-1.10.2.js"></script>
+    <link rel="Stylesheet" href="/css/jquery-ui.css"/>
+    <script src="/js/jquery-ui.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-inline">Employees</h1>
+        <nav class="header-inline">            
+            @Html.ActionLink("Сотрудники", "Index", "Employee")
+            @Html.ActionLink("Отделы", "Index", "Department")
+            @Html.ActionLink("Специализации", "Index", "Language")
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            2020 - EmployeesCounter
+        </div>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@model List<EmployeesCounter.Models.ProgLang>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Специализации</h2>
+@Html.ActionLink("Добавить специализацию", "CreateSpec", "Language")
+<table>
+    <thead>
+        <tr>
+            <td>Название специализации</td>
+            <td>Число сотрудников</td>
+            <td>Удалить</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lang in Model)
+        {
+        <tr>
+            <td>@Html.ActionLink(lang.Title, "EditSpec", "Language")</td>
+            @foreach (var data in ViewBag.Count)
+                @if (data.Key == lang.Id)
+                {
+                    <td>@data.Value</td>
+                }
+                <td>
+                    @using (Html.BeginForm("DeleteSpec", "Language"))
+                    {
+                        @Html.Hidden("depId", lang.Id)
+                        <input type="submit" value="Remove"/>
+                    }
+                </td>
+            </tr>
+            }
+    </tbody>    
+</table>
+

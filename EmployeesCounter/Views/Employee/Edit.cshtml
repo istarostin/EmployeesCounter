@@ -1,0 +1,53 @@
+﻿@model EmployeesCounter.Models.EditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>@ViewBag.Title</h1>
+@using (Html.BeginForm("Edit", "Employee"))
+{
+    @Html.HiddenFor(x => x.Employee.Id)
+    <div>
+        @Html.EditorFor(x => x.Employee.Name)
+    </div>
+    <div>
+        @Html.EditorFor(x => x.Employee.Surname)
+    </div>
+    <div>
+        @Html.EditorFor(x => x.Employee.Age)
+    </div>
+
+    @if (Model.Employee.DepartmentId != 0 && Model.Employee.ProgLangId != 0) 
+    {
+        <div>
+            @Html.DropDownListFor(x => x.Employee.DepartmentId, Model.Departments)
+        </div>
+        <div>
+            @Html.DropDownListFor(x => x.Employee.ProgLangId, Model.ProgLangs)
+        </div>
+        }
+        else
+    {
+        <div>
+            @Html.DropDownListFor(x => x.Employee.DepartmentId, Model.Departments)
+        </div>
+        <div>
+            @Html.DropDownListFor(x => x.Employee.ProgLangId, Model.ProgLangs)
+        </div>
+        }
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index", "Employee")
+}
+
+    <script type="text/javascript">
+    $(function () {
+        $('input#Employee_Name').autocomplete({
+            source: @Json.Serialize(@ViewBag.EmpNames)
+            });
+        $('input#Employee_Surname').autocomplete({
+            source: @Json.Serialize(@ViewBag.EmpSurnames)
+            });
+    });
+    </script>

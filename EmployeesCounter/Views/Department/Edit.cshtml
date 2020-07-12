@@ -1,0 +1,20 @@
+﻿@model EmployeesCounter.Models.Department
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("EditDepartment", "Department"))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div>
+        @Html.EditorFor(x => x.Title)
+    </div>
+    <div>
+        @Html.EditorFor(x => x.Floor)
+    </div>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to List", "Index", "Employee")
+}
+

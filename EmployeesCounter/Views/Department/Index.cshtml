@@ -1,0 +1,41 @@
+﻿@model List<EmployeesCounter.Models.Department>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Отделы</h2>
+@Html.ActionLink("Добавить отдел", "CreateDepartment", "Department")
+<table>
+    <thead>
+        <tr>
+            <td>Название отдела</td>
+            <td>Этаж</td>
+            <td>Число сотрудников</td>
+            <td>Удалить</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dep in Model)
+        {
+        <tr>
+            <td>@Html.ActionLink(dep.Title, "EditDepartment", "Department")</td>
+            <td>@dep.Floor</td>
+            @foreach (var data in ViewBag.Count)
+                @if (data.Key == dep.Id)
+                {
+                    <td>@data.Value</td>
+                }
+
+                <td>
+                    @using (Html.BeginForm("DeleteDepartment", "Department"))
+                    {
+                        @Html.Hidden("depId", dep.Id)
+                        <input type="submit" value="Remove" />
+                    }
+                </td>
+            </tr>
+            }
+    </tbody>    
+</table>
+
